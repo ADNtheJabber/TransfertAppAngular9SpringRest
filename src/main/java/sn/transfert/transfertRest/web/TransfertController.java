@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import sn.transfert.transfertRest.dao.IClient;
+import sn.transfert.transfertRest.dao.IEmetteur;
+import sn.transfert.transfertRest.dao.IRecepteur;
 import sn.transfert.transfertRest.dao.ITransfert;
 import sn.transfert.transfertRest.domaine.Transfert;
 
@@ -23,9 +24,12 @@ public class TransfertController {
 	
 	@Autowired
     private ITransfert transfertRepository;
-	
-	@Autowired
-	private IClient clientRepository;
+//	
+//	@Autowired
+//	private IEmetteur emetteurRepository;
+//	
+//	@Autowired
+//	private IRecepteur recepteurRepository;
 
 
     @GetMapping("/transferts")
@@ -35,8 +39,7 @@ public class TransfertController {
 
     @GetMapping("/transferts/{id}")
     public Transfert getTransfert(@PathVariable int id) {
-		return null;
-        
+		return null;   
     }
 
     @PostMapping("/transferts")

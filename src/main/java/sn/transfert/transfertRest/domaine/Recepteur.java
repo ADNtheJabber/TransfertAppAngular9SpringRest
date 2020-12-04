@@ -1,8 +1,6 @@
 package sn.transfert.transfertRest.domaine;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,11 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,12 +21,12 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name = "transfert")
+@Table(name = "recepteur")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Transfert implements Serializable{
+public class Recepteur implements Serializable{
 
 	/**
 	 * 
@@ -38,20 +35,21 @@ public class Transfert implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idTransfert;
+	private int idRecepteur;
 	
-	@Column(name = "codeTransfert", unique = true, nullable = false, length = 10)
-	private String codeTransfert;
-	
-	@Column(name = "montant", nullable = false, length = 10)
-	private Double montant;
-	
-	@Column(name = "date", nullable = false, length = 10)
-	private String date;
-	
-	@OneToOne @JoinColumn( name="idEmetteur" )
-	private Emetteur emetteur;
+	@Column(name = "nom", nullable = false, length = 30)
+	private String nom;
 
-	@OneToOne @JoinColumn( name="idRecepteur" )
-	private Recepteur recepteur;
+	@Column(name = "prenom", nullable = false, length = 30)
+	private String prenom;
+	
+	@Column(name = "tel", nullable = false, length = 20)
+	private String tel;
+	
+	@Column(name = "cni", nullable = true, length = 20)
+	private int cni;
+	
+	@OneToOne @JoinColumn( name="idTransfert" )
+	private Transfert transfert;
+
 }
